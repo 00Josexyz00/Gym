@@ -1,0 +1,191 @@
+USE [gimnasio]
+GO
+/****** Object:  Table [dbo].[Clientes]    Script Date: 19/01/2019 19:11:35 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Clientes](
+	[CI] [nvarchar](10) NOT NULL,
+	[Nombre] [nvarchar](50) NULL,
+	[Apellido] [nvarchar](50) NULL,
+	[Celular] [nvarchar](10) NULL,
+	[Telefono] [nvarchar](10) NULL,
+	[Direccion] [nvarchar](50) NULL,
+	[Control] [nvarchar](50) NULL,
+	[Observaciones] [nvarchar](50) NULL,
+	[Estado] [nvarchar](50) NULL,
+	[IdTarifa] [int] NULL,
+	[CIEntrenador] [nvarchar](10) NULL,
+	[IdRutina] [int] NULL,
+	[IdDieta] [int] NULL,
+	[email] [nvarchar](50) NULL,
+ CONSTRAINT [PK_Clientes] PRIMARY KEY CLUSTERED 
+(
+	[CI] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Deudas]    Script Date: 19/01/2019 19:11:35 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Deudas](
+	[IdDeuda] [int] NOT NULL,
+	[CI] [nvarchar](10) NULL,
+	[valor] [decimal](18, 2) NULL,
+	[Observaciones] [nvarchar](50) NULL,
+ CONSTRAINT [PK_Deudas] PRIMARY KEY CLUSTERED 
+(
+	[IdDeuda] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Dietas]    Script Date: 19/01/2019 19:11:35 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Dietas](
+	[IdDieta] [int] NOT NULL,
+	[TipodeDieta] [nvarchar](50) NULL,
+ CONSTRAINT [PK_Dietas] PRIMARY KEY CLUSTERED 
+(
+	[IdDieta] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Entrenadores]    Script Date: 19/01/2019 19:11:35 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Entrenadores](
+	[CI] [nvarchar](10) NOT NULL,
+	[Nombres] [nvarchar](50) NULL,
+	[Apellidos] [nvarchar](50) NULL,
+	[Telefono] [nvarchar](15) NULL,
+	[Celular] [nvarchar](10) NULL,
+	[Direccion] [nvarchar](50) NULL,
+	[Salario] [decimal](18, 2) NULL,
+	[Observaciones] [nvarchar](100) NULL,
+	[Estado] [nvarchar](50) NULL,
+	[email] [nvarchar](50) NULL,
+ CONSTRAINT [PK_Entrenadores] PRIMARY KEY CLUSTERED 
+(
+	[CI] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Equipamento]    Script Date: 19/01/2019 19:11:35 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Equipamento](
+	[IdEquipamento] [int] IDENTITY(1,1) NOT NULL,
+	[Nombre] [nvarchar](50) NULL,
+	[Valor] [decimal](18, 2) NULL,
+	[Observaciones] [nvarchar](100) NULL,
+	[Estado] [nvarchar](50) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[IdEquipamento] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Pagos]    Script Date: 19/01/2019 19:11:35 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Pagos](
+	[IdPagos] [int] NOT NULL,
+	[IdDeuda] [int] NULL,
+	[FechaPago] [date] NULL,
+	[Abono] [decimal](18, 2) NULL,
+	[Estado] [nvarchar](50) NULL,
+ CONSTRAINT [PK_Pagos] PRIMARY KEY CLUSTERED 
+(
+	[IdPagos] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Proveedores]    Script Date: 19/01/2019 19:11:35 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Proveedores](
+	[RUC] [nvarchar](50) NOT NULL,
+	[Nombre] [nvarchar](50) NULL,
+	[Telefono] [nvarchar](50) NULL,
+	[Celular] [nvarchar](50) NULL,
+	[Direccion] [nvarchar](100) NULL,
+	[Producto] [nvarchar](50) NULL,
+	[email] [nvarchar](50) NULL,
+	[Observaciones] [nvarchar](100) NULL,
+	[Estado] [nvarchar](50) NULL,
+ CONSTRAINT [PK_Proveedores] PRIMARY KEY CLUSTERED 
+(
+	[RUC] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Rutinas]    Script Date: 19/01/2019 19:11:35 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Rutinas](
+	[IdRutina] [int] NOT NULL,
+	[Rutina] [nvarchar](50) NULL,
+ CONSTRAINT [PK_Rutinas] PRIMARY KEY CLUSTERED 
+(
+	[IdRutina] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Tarifa]    Script Date: 19/01/2019 19:11:35 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Tarifa](
+	[IdTarifa] [int] NOT NULL,
+	[TipoTarifa] [nvarchar](50) NULL,
+	[ValorTarifa] [decimal](18, 2) NULL,
+ CONSTRAINT [PK_Tarifa] PRIMARY KEY CLUSTERED 
+(
+	[IdTarifa] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+ALTER TABLE [dbo].[Clientes]  WITH CHECK ADD FOREIGN KEY([CIEntrenador])
+REFERENCES [dbo].[Entrenadores] ([CI])
+GO
+ALTER TABLE [dbo].[Clientes]  WITH CHECK ADD FOREIGN KEY([IdDieta])
+REFERENCES [dbo].[Dietas] ([IdDieta])
+GO
+ALTER TABLE [dbo].[Clientes]  WITH CHECK ADD FOREIGN KEY([IdRutina])
+REFERENCES [dbo].[Rutinas] ([IdRutina])
+GO
+ALTER TABLE [dbo].[Clientes]  WITH CHECK ADD FOREIGN KEY([IdTarifa])
+REFERENCES [dbo].[Tarifa] ([IdTarifa])
+GO
+ALTER TABLE [dbo].[Deudas]  WITH CHECK ADD FOREIGN KEY([CI])
+REFERENCES [dbo].[Clientes] ([CI])
+GO
+ALTER TABLE [dbo].[Pagos]  WITH CHECK ADD FOREIGN KEY([IdDeuda])
+REFERENCES [dbo].[Deudas] ([IdDeuda])
+GO
